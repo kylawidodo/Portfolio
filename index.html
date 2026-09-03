@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kyla Widodo — Sales Engineer &amp; Builder</title>
-<meta name="description" content="Kyla Widodo — Sales Engineer at Luminance. Enterprise discovery, GTM, and shipped side projects. Dartmouth CS, NCAA National Champion.">
+<title>Kyla Widodo — Builder &amp; Technical Lead</title>
+<meta name="description" content="Kyla Widodo — Sales Engineer at Luminance. Technical discovery, customer-facing builder, and shipped side projects. Dartmouth CS, NCAA National Champion.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 3c5 0 8 2 10 5 2 3 3 6 2 10-1 4-2 7-5 9-4 3-9 3-13 1-4-2-7-5-8-9-1-4 0-8 3-11 2-3 6-5 11-5z' fill='%23f6c445'/%3E%3Ccircle cx='15' cy='18' r='1.6' fill='%23171717'/%3E%3Ccircle cx='25' cy='18' r='1.6' fill='%23171717'/%3E%3Cpath d='M14 24c2 2 4 3 6 3s4-1 6-3' stroke='%23171717' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,7 +104,7 @@
   .hero-eyebrow{color:var(--ink-faint);font-size:.9rem;margin-bottom:1.1rem;}
   .hero-head{
     font-family:var(--serif);font-weight:500;font-style:normal;
-    font-size:clamp(2.2rem, 5.4vw, 4.4rem);line-height:1.18;letter-spacing:-.01em;
+    font-size:clamp(1.7rem, 3.6vw, 3rem);line-height:1.22;letter-spacing:-.01em;
   }
   .hero-head em{font-style:italic;font-weight:500;}
   .hl{
@@ -142,7 +142,7 @@
   [data-reveal].is-visible{opacity:1;transform:translateY(0);}
   @media (prefers-reduced-motion:reduce){
     [data-reveal]{opacity:1;transform:none;transition:none;}
-    .marquee-track{animation:none;}
+    .marquee-track,.project-scroll-track{animation:none;}
   }
 
   /* about */
@@ -245,6 +245,27 @@
   }
   @media (max-width:900px){.project-card{grid-column:span 6;}}
 
+  /* scrolling project strip — duplicate a .mini-card to add another entry */
+  .project-scroll{margin-top:3.5rem;}
+  .project-scroll-head{font-size:.8rem;color:var(--ink-faint);margin-bottom:1.25rem;}
+  .project-scroll-wrap{overflow:hidden;margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter);}
+  .project-scroll-track{display:flex;gap:1.25rem;width:max-content;animation:scrollLeft 34s linear infinite;}
+  .project-scroll-wrap:hover .project-scroll-track{animation-play-state:paused;}
+  @keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .mini-card{
+    flex:0 0 auto;width:240px;border:1px solid var(--line);border-radius:16px;
+    padding:1.35rem;background:var(--paper);transition:transform .2s ease,border-color .2s ease;
+  }
+  .mini-card:hover{transform:translateY(-4px);border-color:var(--ink);}
+  .mini-card h4{font-family:var(--serif);font-size:1.05rem;font-weight:600;margin-bottom:.4rem;}
+  .mini-card p{font-size:.8rem;color:var(--ink-soft);line-height:1.55;margin-bottom:.75rem;}
+  .mini-card .project-tags{font-size:.68rem;}
+  .mini-card--ghost{
+    border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;color:var(--ink-faint);gap:.4rem;
+  }
+  .mini-card--ghost .plus{font-family:var(--serif);font-size:1.8rem;color:var(--blue);line-height:1;}
+
   /* service */
   .service{background:var(--paper-2);padding:5rem 0;}
   .service-quote{
@@ -306,16 +327,17 @@
 <main id="top">
 
   <section class="hero" id="hero">
-    <div class="hero-eyebrow">Sales Engineer, Luminance — New York</div>
+    <div class="hero-eyebrow">Sales Engineer &amp; Builder, Luminance — New York</div>
     <h1 class="hero-head">
-      Hello, I&rsquo;m Kyla &mdash; I help enterprise teams close
-      <span class="hl">deals that make sense</span>,
-      with discovery that builds <em>trust</em>
-      <span class="doodle" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><g stroke="#14141a" stroke-width="2" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></g></svg></span>
-      and demos that feel <em>effortless</em>
-      <span class="doodle" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><g fill="none" stroke="#14141a" stroke-width="1.6"><ellipse cx="12" cy="6.5" rx="2.6" ry="4.2"/><ellipse cx="12" cy="17.5" rx="2.6" ry="4.2"/><ellipse cx="6.5" cy="12" rx="4.2" ry="2.6"/><ellipse cx="17.5" cy="12" rx="4.2" ry="2.6"/></g><circle cx="12" cy="12" r="2" fill="#14141a"/></svg></span>.
+      Hello, I&rsquo;m Kyla &mdash; I build
+      <span class="hl">the technical bridge</span>
+      between enterprise customers and the product,
+      with discovery that feels like <em>partnership</em>
+      <span class="doodle" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><g stroke="#14141a" stroke-width="2" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></g></svg></span>
+      and solutions that actually <em>ship</em>
+      <span class="doodle" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><g fill="none" stroke="#14141a" stroke-width="1.6"><ellipse cx="12" cy="6.5" rx="2.6" ry="4.2"/><ellipse cx="12" cy="17.5" rx="2.6" ry="4.2"/><ellipse cx="6.5" cy="12" rx="4.2" ry="2.6"/><ellipse cx="17.5" cy="12" rx="4.2" ry="2.6"/></g><circle cx="12" cy="12" r="2" fill="#14141a"/></svg></span>.
     </h1>
-    <p class="hero-dek">Along the way, I drove $4M+ in enterprise deals at Luminance, and built a nonprofit, an assistive device, and a visa app on the side.</p>
+    <p class="hero-dek">Along the way, I&rsquo;ve driven $4M+ in enterprise partnerships at Luminance while building internal agent tooling for the team &mdash; plus a nonprofit, an assistive device, and a visa app on the side.</p>
     <div class="hero-actions">
       <a class="btn btn--outline" href="#projects">View my work</a>
       <span class="hero-scroll">Scroll to explore ↓</span>
@@ -324,8 +346,8 @@
 
   <div class="marquee">
     <div class="marquee-track">
-      <span><i>&middot;</i>Enterprise Discovery<i>&middot;</i>GTM Strategy<i>&middot;</i>Product Sense<i>&middot;</i>National Champion<i>&middot;</i>Builder<i>&middot;</i></span>
-      <span><i>&middot;</i>Enterprise Discovery<i>&middot;</i>GTM Strategy<i>&middot;</i>Product Sense<i>&middot;</i>National Champion<i>&middot;</i>Builder<i>&middot;</i></span>
+      <span><i>&middot;</i>Technical Discovery<i>&middot;</i>Solutions Engineering<i>&middot;</i>Product Sense<i>&middot;</i>Builder<i>&middot;</i>National Champion<i>&middot;</i></span>
+      <span><i>&middot;</i>Technical Discovery<i>&middot;</i>Solutions Engineering<i>&middot;</i>Product Sense<i>&middot;</i>Builder<i>&middot;</i>National Champion<i>&middot;</i></span>
     </div>
   </div>
 
@@ -334,7 +356,7 @@
       <div class="label" data-reveal>01 / About</div>
       <div class="about-columns" data-reveal>
         <div class="about-text">
-          <p class="about-lead">yla is a Sales Engineer at Luminance, where she partners with Account Executives to lead technical discovery and demos for enterprise legal AI deals &mdash; and where she closed 167% of quota in H1 2026 and was named Q1 MVP. Before enterprise software, she was building things: a nonprofit in Indonesia, an assistive device for ADHD, an app to automate visa paperwork. She studied Computer Science, Film, and Neuroscience at Dartmouth, played on two national championship rugby teams, and still can&rsquo;t sit through a demo without wanting to rebuild the product.</p>
+          <p class="about-lead">Kyla is a Sales Engineer at Luminance, where she leads technical discovery and builds the demos, pilots, and internal tooling that turn enterprise legal AI requirements into working software &mdash; closing 167% of quota in H1 2026 and earning Q1 MVP along the way. Before enterprise software, she was building things: a nonprofit in Indonesia, an assistive device for ADHD, an app to automate visa paperwork. She studied Computer Science, Film, and Neuroscience at Dartmouth, played on two national championship rugby teams, and still can&rsquo;t sit through a demo without wanting to rebuild the product.</p>
           <div class="about-meta">
             <div>Based in New York &mdash; originally Jakarta, Indonesia</div>
             <div>Dartmouth &rsquo;25 &mdash; B.A. Computer Science, modified with Film &amp; Neuroscience</div>
@@ -392,13 +414,13 @@
             <span class="ti-date">Aug 2025 &ndash; Present</span>
           </div>
           <ul>
-            <li>Drove $4M+ in new business in H1 2026, achieving 167% attainment and earning Q1 2026 MVP / Highest Closer for enterprise legal AI agent sales.</li>
-            <li>Partner with Account Executives on consultative discovery, technical qualification, champion building, and demos across 10+ stakeholders per deal, from end users to C&#8209;suite.</li>
-            <li>Work with GTM to structure targeted pilots, run org&#8209;wide enablement sessions, and manage client relationships through post&#8209;sales.</li>
+            <li>Lead technical discovery, qualification, and demos across 10+ stakeholders per deal &mdash; from end users to C&#8209;suite &mdash; translating how enterprise legal teams actually work into what gets built and shown.</li>
+            <li>Structure and run targeted pilots and org&#8209;wide enablement sessions, staying hands&#8209;on with clients from technical evaluation through post&#8209;deployment.</li>
             <li>Lead a monthly internal hackathon, teaching the team to build agents and ship internal tools with Codex.</li>
-            <li>Selected by the Commercial Director to run bi&#8209;weekly demo training for new Account Executives; influenced the product roadmap for 6 features from client feedback.</li>
+            <li>Influenced the product roadmap for 6 features by translating client usage patterns and technical feedback into structured requirements for Product and Engineering.</li>
+            <li>Drove $4M+ in new business in H1 2026, achieving 167% attainment and earning Q1 2026 MVP / Highest Closer.</li>
           </ul>
-          <div class="ti-tags"><span class="tag">Enterprise Legal AI</span><span class="tag">Discovery</span><span class="tag">Enablement</span></div>
+          <div class="ti-tags"><span class="tag">Enterprise Legal AI</span><span class="tag">Technical Discovery</span><span class="tag">Deployment</span></div>
         </div>
       </li>
       <li class="timeline-item" data-reveal>
@@ -471,6 +493,26 @@
         <span class="project-date">Coming soon</span>
         <p>Currently building &mdash; details to follow.</p>
       </article>
+    </div>
+
+    <div class="project-scroll" data-reveal>
+      <div class="project-scroll-head">More, in motion &mdash; hover to pause</div>
+      <div class="project-scroll-wrap">
+        <div class="project-scroll-track" id="projectScrollTrack">
+          <div class="mini-card"><h4>VisaEase</h4><p>Visa paperwork, automated end&#8209;to&#8209;end.</p><div class="project-tags">React Native</div></div>
+          <div class="mini-card"><h4>Focus Buddy</h4><p>An assistive study device, from CAD to code.</p><div class="project-tags">Arduino &middot; CAD</div></div>
+          <div class="mini-card"><h4>SetPiece</h4><p>In the works &mdash; details soon.</p><div class="project-tags">Coming soon</div></div>
+          <div class="mini-card"><h4>Internal Agent Tools</h4><p>Agent&#8209;powered internal tools, shipped monthly at Luminance hackathons.</p><div class="project-tags">Codex &middot; Automation</div></div>
+          <div class="mini-card"><h4>This Site</h4><p>Hand&#8209;built, no framework &mdash; just HTML, CSS, and a few doodles.</p><div class="project-tags">HTML &middot; CSS &middot; JS</div></div>
+          <div class="mini-card mini-card--ghost"><span class="plus">+</span><span>Add your next project here</span></div>
+          <div class="mini-card" aria-hidden="true"><h4>VisaEase</h4><p>Visa paperwork, automated end&#8209;to&#8209;end.</p><div class="project-tags">React Native</div></div>
+          <div class="mini-card" aria-hidden="true"><h4>Focus Buddy</h4><p>An assistive study device, from CAD to code.</p><div class="project-tags">Arduino &middot; CAD</div></div>
+          <div class="mini-card" aria-hidden="true"><h4>SetPiece</h4><p>In the works &mdash; details soon.</p><div class="project-tags">Coming soon</div></div>
+          <div class="mini-card" aria-hidden="true"><h4>Internal Agent Tools</h4><p>Agent&#8209;powered internal tools, shipped monthly at Luminance hackathons.</p><div class="project-tags">Codex &middot; Automation</div></div>
+          <div class="mini-card" aria-hidden="true"><h4>This Site</h4><p>Hand&#8209;built, no framework &mdash; just HTML, CSS, and a few doodles.</p><div class="project-tags">HTML &middot; CSS &middot; JS</div></div>
+          <div class="mini-card mini-card--ghost" aria-hidden="true"><span class="plus">+</span><span>Add your next project here</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -555,7 +597,7 @@
       dot.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px) translate(-50%,-50%)';
       dot.classList.add('is-on');
     });
-    document.querySelectorAll('a, .stat, .project-card, .intro-play').forEach(function(el){
+    document.querySelectorAll('a, .stat, .project-card, .mini-card, .intro-play').forEach(function(el){
       el.addEventListener('mouseenter', function(){ dot.classList.add('is-active'); });
       el.addEventListener('mouseleave', function(){ dot.classList.remove('is-active'); });
     });
