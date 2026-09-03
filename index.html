@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kyla Widodo — Sales Engineer &amp; Builder</title>
+<meta name="description" content="Kyla Widodo — Sales Engineer at Luminance. Enterprise discovery, GTM, and shipped side projects. Dartmouth CS, NCAA National Champion.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231c1a17'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' fill='%23f3efe6' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300..900;1,300..900&family=Space+Grotesk:wght@400..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3efe6;
+    --paper-2:#eae2d0;
+    --ink:#1c1a17;
+    --ink-soft:#5c564c;
+    --ink-faint:#8a8375;
+    --rust:#b2502f;
+    --rust-deep:#8a3c22;
+    --line:rgba(28,26,23,.16);
+    --wrap:1280px;
+    --gutter:clamp(1.25rem, 4vw, 4rem);
+    --serif:"Fraunces", Georgia, serif;
+    --sans:"Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --mono:"Space Mono", "Courier New", monospace;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,video{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  h1,h2,h3,p{margin:0;}
+  section{scroll-margin-top:5rem;}
+  .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter);}
+
+  /* grain overlay */
+  .grain{
+    position:fixed;inset:0;z-index:60;pointer-events:none;
+    opacity:.045;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* scroll progress rail */
+  .progress-rail{position:fixed;top:0;right:10px;width:2px;height:100%;background:var(--line);z-index:70;}
+  .progress-fill{width:100%;height:0%;background:var(--rust);transition:height .05s linear;}
+
+  /* custom cursor */
+  .cursor-dot{
+    position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;
+    background:var(--rust);pointer-events:none;z-index:80;
+    transform:translate(-50%,-50%);transition:width .18s ease,height .18s ease,opacity .18s ease;
+    opacity:0;
+  }
+  .cursor-dot.is-on{opacity:1;}
+  .cursor-dot.is-active{width:34px;height:34px;background:transparent;border:1px solid var(--rust);}
+
+  /* header */
+  .site-header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:flex-start;justify-content:space-between;
+    padding:1.5rem var(--gutter);
+    pointer-events:none;
+  }
+  .site-header > *{pointer-events:auto;}
+  .wordmark{
+    font-family:var(--serif);font-weight:600;font-size:1.05rem;line-height:1.05;
+    text-transform:uppercase;letter-spacing:.03em;
+  }
+  .site-nav{display:flex;gap:clamp(1rem,2.5vw,2.25rem);}
+  .site-nav a{
+    font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;font-weight:500;
+    padding-bottom:.15rem;border-bottom:1px solid transparent;
+  }
+  .site-nav a:hover{text-decoration:underline;text-decoration-style:wavy;text-decoration-color:var(--rust);text-underline-offset:5px;}
+  .header-meta{text-align:right;font-size:.72rem;color:var(--ink-soft);}
+  .header-meta .loc{display:block;}
+  .header-meta .clock{display:block;color:var(--rust-deep);}
+
+  @media (max-width:720px){
+    .site-nav{display:none;}
+    .header-meta{display:none;}
+  }
+
+  /* hero */
+  .hero{
+    min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+    padding:7rem var(--gutter) 4rem;position:relative;
+  }
+  .hero-eyebrow{
+    font-family:var(--mono);color:var(--rust-deep);font-size:.78rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;
+  }
+  .hero-name{
+    font-family:var(--serif);font-weight:600;font-style:normal;
+    font-size:clamp(3.2rem, 11vw, 9rem);line-height:.92;letter-spacing:-.01em;
+    margin-left:-.05em;
+  }
+  .hero-name em{font-style:italic;font-weight:400;color:var(--rust);}
+  .hero-dek{
+    max-width:38ch;margin-top:1.75rem;font-size:clamp(1rem,1.6vw,1.2rem);
+    color:var(--ink-soft);
+  }
+  .hero-foot{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-top:3.5rem;flex-wrap:wrap;gap:1rem;
+  }
+  .hero-scroll{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);display:flex;align-items:center;gap:.6rem;
+  }
+  .hero-scroll::after{
+    content:"";width:1px;height:34px;background:var(--ink-faint);
+    animation:scrollpulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollpulse{0%,100%{opacity:.25;}50%{opacity:1;}}
+  .hero-tags{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;}
+  .tag{
+    font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;
+    border:1px solid var(--line);padding:.35rem .6rem;border-radius:2px;color:var(--ink-soft);
+  }
+
+  /* reel */
+  .reel{padding:0 var(--gutter);margin:2rem auto 3rem;max-width:var(--wrap);}
+  .reel-media{
+    position:relative;height:min(62vh,560px);overflow:hidden;
+    transform:rotate(-.5deg);border-radius:2px;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(28,26,23,.14) 1px, transparent 0) 0 0/14px 14px,
+      var(--paper-2);
+  }
+  .reel-media video{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  }
+  .reel-caption{
+    display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+    margin-top:.9rem;font-size:.8rem;color:var(--ink-soft);
+    transform:rotate(-.5deg);
+  }
+  .reel-caption span:first-child{color:var(--rust-deep);}
+
+  /* marquee */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;padding:1.1rem 0;white-space:nowrap;
+  }
+  .marquee-track{display:inline-block;animation:marquee 32s linear infinite;}
+  .marquee-track span{
+    font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2.6vw,1.6rem);
+    margin-right:2rem;color:var(--ink-soft);
+  }
+  .marquee-track span i{color:var(--rust);font-style:normal;margin-right:2rem;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* section head */
+  .section-head{
+    display:flex;align-items:baseline;gap:1.25rem;margin-bottom:2.25rem;flex-wrap:wrap;
+  }
+  .section-head .mono{color:var(--rust-deep);font-size:.78rem;white-space:nowrap;}
+  .section-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3.6vw,2.7rem);}
+
+  /* reveal */
+  [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  [data-reveal].is-visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    [data-reveal]{opacity:1;transform:none;transition:none;}
+    .marquee-track,.hero-scroll::after{animation:none;}
+  }
+
+  /* about */
+  .about{padding:6rem 0;}
+  .about-grid{display:grid;grid-template-columns:140px 1fr;gap:2rem;}
+  .about-lead{
+    font-family:var(--serif);font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.45;
+    max-width:52ch;font-weight:400;
+  }
+  .about-lead::first-letter{
+    font-size:3.4em;float:left;line-height:.8;padding-right:.08em;margin-top:.06em;
+    color:var(--rust);font-weight:600;
+  }
+  .about-meta{margin-top:2rem;display:flex;flex-direction:column;gap:.5rem;color:var(--ink-soft);font-size:.85rem;}
+  @media (max-width:640px){.about-grid{grid-template-columns:1fr;}}
+
+  /* stats */
+  .stats{padding:4rem 0 6rem;}
+  .stats-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--paper);padding:1.6rem 1.3rem;
+    display:flex;flex-direction:column;gap:.5rem;transition:transform .25s ease,background .25s ease;
+  }
+  .stat:nth-child(odd){transform:rotate(-.35deg);}
+  .stat:nth-child(even){transform:rotate(.35deg);}
+  .stat:hover{transform:translateY(-4px) rotate(0);background:var(--paper-2);}
+  .stat--lg .stat-num{font-size:clamp(2.3rem,4.2vw,3.2rem);}
+  .stat-num{font-family:var(--serif);font-size:clamp(1.9rem,3.4vw,2.6rem);font-weight:600;color:var(--ink);}
+  .stat-label{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);}
+  @media (max-width:720px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:420px){.stats-grid{grid-template-columns:1fr;}}
+
+  /* timeline */
+  .experience{padding:4rem 0 6rem;}
+  .timeline{display:flex;flex-direction:column;}
+  .timeline-item{
+    display:grid;grid-template-columns:90px 1fr;gap:1.5rem;
+    padding:2.4rem 0;border-top:1px solid var(--line);
+  }
+  .timeline-item:last-child{border-bottom:1px solid var(--line);}
+  .ti-index{font-family:var(--mono);font-size:.85rem;color:var(--rust-deep);padding-top:.2rem;}
+  .ti-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 1rem;margin-bottom:1rem;}
+  .ti-head h3{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:600;}
+  .ti-role{font-style:italic;color:var(--ink-soft);font-size:.95rem;}
+  .ti-date{font-size:.72rem;color:var(--ink-faint);margin-left:auto;}
+  .ti-body ul{display:flex;flex-direction:column;gap:.55rem;max-width:62ch;}
+  .ti-body li{position:relative;padding-left:1.1rem;font-size:.94rem;color:var(--ink-soft);line-height:1.6;}
+  .ti-body li::before{content:"—";position:absolute;left:0;color:var(--rust);}
+  .ti-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.1rem;}
+  @media (max-width:640px){.timeline-item{grid-template-columns:1fr;}.ti-date{margin-left:0;}}
+
+  /* projects */
+  .projects{padding:4rem 0 6rem;}
+  .project-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;}
+  .project-card{
+    grid-column:span 3;border-top:3px solid var(--rust);padding-top:1.25rem;
+    position:relative;transition:transform .25s ease;
+  }
+  .project-card:nth-child(1){transform:rotate(-.4deg);}
+  .project-card:nth-child(2){transform:rotate(.4deg);}
+  .project-card:nth-child(3){transform:rotate(-.3deg);}
+  .project-card:hover{transform:translateY(-6px) rotate(0);}
+  .project-num{color:var(--ink-faint);font-size:.72rem;margin-bottom:.6rem;}
+  .project-card h3{font-family:var(--serif);font-size:clamp(1.35rem,2.3vw,1.75rem);font-weight:600;margin-bottom:.3rem;}
+  .project-date{color:var(--ink-faint);font-size:.68rem;display:block;margin-bottom:.9rem;}
+  .project-card p{color:var(--ink-soft);font-size:.9rem;line-height:1.65;margin-bottom:1rem;}
+  .project-tags{font-family:var(--mono);font-size:.68rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em;}
+  .project-card--wip{opacity:.85;}
+  .project-stamp{
+    position:absolute;top:-.6rem;right:.5rem;font-family:var(--mono);font-size:.62rem;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--rust-deep);
+    border:1px dashed var(--rust-deep);padding:.25rem .5rem;transform:rotate(6deg);
+  }
+  @media (max-width:900px){.project-card{grid-column:span 6;}}
+
+  /* service */
+  .service{background:var(--paper-2);padding:5rem 0;}
+  .service-quote{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.55;max-width:64ch;
+  }
+  .service-quote i{font-style:normal;color:var(--rust-deep);}
+  .service-meta{margin-top:1.75rem;display:flex;gap:1.5rem;flex-wrap:wrap;font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);}
+
+  /* education */
+  .education{padding:5rem 0;}
+  .education h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3.2vw,2.4rem);margin-bottom:.4rem;}
+  .education .edu-sub{color:var(--ink-soft);font-size:.95rem;margin-bottom:1.5rem;}
+  .badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.25rem;}
+  .badge{
+    font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;
+    border:1px solid var(--line);border-radius:999px;padding:.4rem .85rem;color:var(--ink-soft);
+  }
+  .badge--stamp{border-color:var(--rust);color:var(--rust-deep);transform:rotate(-2deg);}
+  .skills-list{max-width:70ch;color:var(--ink-soft);font-size:.9rem;line-height:1.9;}
+
+  /* contact */
+  .contact{padding:6rem 0 3rem;}
+  .contact .mono{color:var(--rust-deep);}
+  .contact h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,5vw,3.5rem);margin:.75rem 0 2rem;}
+  .contact-email{
+    font-family:var(--serif);font-size:clamp(1.4rem,3.4vw,2.1rem);font-weight:500;
+    display:inline-block;border-bottom:2px solid var(--rust);padding-bottom:.15rem;
+  }
+  .contact-links{display:flex;gap:2rem;margin-top:2.5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;}
+  .contact-links a:hover{text-decoration:underline;text-decoration-style:wavy;text-decoration-color:var(--rust);text-underline-offset:5px;}
+  .foot-meta{
+    display:flex;justify-content:space-between;margin-top:4.5rem;padding-top:1.5rem;
+    border-top:1px solid var(--line);font-family:var(--mono);font-size:.68rem;color:var(--ink-faint);
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<header class="site-header">
+  <a class="wordmark" href="#top">Kyla<br>Widodo</a>
+  <nav class="site-nav">
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="header-meta">
+    <span class="loc">New York, NY</span>
+    <span class="clock mono" id="clock">--:--</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="hero-eyebrow">— Sales engineer, builder, ex&#8209;national champion</div>
+    <h1 class="hero-name">Kyla<br><em>Widodo</em></h1>
+    <p class="hero-dek">I take enterprise buyers from &ldquo;that&rsquo;s interesting&rdquo; to signed contract &mdash; then go build the internal tool that makes the next deal easier.</p>
+    <div class="hero-foot">
+      <div class="hero-scroll">Scroll</div>
+      <div class="hero-tags">
+        <span class="tag">Enterprise SaaS</span>
+        <span class="tag">Technical Discovery</span>
+        <span class="tag">GTM</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reel" id="reel" data-reveal>
+    <div class="reel-media">
+      <video class="reel-video" autoplay muted loop playsinline poster="assets/reel-poster.jpg" src="assets/reel.mp4"></video>
+    </div>
+    <div class="reel-caption">
+      <span class="mono">Reel</span>
+      <span>Field notes from deals, demos, and things I&rsquo;ve built &mdash; 2022&ndash;2026</span>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span><i>&#10022;</i>Enterprise Discovery<i>&#10022;</i>GTM Strategy<i>&#10022;</i>Product Sense<i>&#10022;</i>National Champion<i>&#10022;</i>Builder<i>&#10022;</i></span>
+      <span><i>&#10022;</i>Enterprise Discovery<i>&#10022;</i>GTM Strategy<i>&#10022;</i>Product Sense<i>&#10022;</i>National Champion<i>&#10022;</i>Builder<i>&#10022;</i></span>
+    </div>
+  </div>
+
+  <section class="about wrap" id="about">
+    <div class="about-grid">
+      <div class="mono" data-reveal>01 / About</div>
+      <div data-reveal>
+        <p class="about-lead">yla is a Sales Engineer at Luminance, where she partners with Account Executives to lead technical discovery and demos for enterprise legal AI deals &mdash; and where she closed 167% of quota in H1 2026 and was named Q1 MVP. Before enterprise software, she was building things: a nonprofit in Indonesia, an assistive device for ADHD, an app to automate visa paperwork. She studied Computer Science, Film, and Neuroscience at Dartmouth, played on two national championship rugby teams, and still can&rsquo;t sit through a demo without wanting to rebuild the product.</p>
+        <div class="about-meta">
+          <div>Based in New York &mdash; originally Jakarta, Indonesia</div>
+          <div>Dartmouth &rsquo;25 &mdash; B.A. Computer Science, modified with Film &amp; Neuroscience</div>
+          <div>Languages &mdash; English, Indonesian</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats wrap" id="impact" data-reveal>
+    <div class="section-head">
+      <span class="mono">02 / Impact</span>
+      <h2>Numbers, mostly</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat stat--lg"><span class="stat-num">$4M+</span><span class="stat-label">New business driven, H1 2026</span></div>
+      <div class="stat"><span class="stat-num">167%</span><span class="stat-label">Quota attainment</span></div>
+      <div class="stat"><span class="stat-num">Q1</span><span class="stat-label">2026 MVP &mdash; Highest Closer</span></div>
+      <div class="stat"><span class="stat-num">$2M</span><span class="stat-label">Contracts facilitated, Sinar Nikel</span></div>
+      <div class="stat"><span class="stat-num">No.1</span><span class="stat-label">Nationally &mdash; DICK&rsquo;S GTM case comp</span></div>
+      <div class="stat"><span class="stat-num">+15%</span><span class="stat-label">Patient return rate lift, Halodoc</span></div>
+      <div class="stat"><span class="stat-num">$40K+</span><span class="stat-label">Raised for rural mental health care</span></div>
+      <div class="stat"><span class="stat-num">88%</span><span class="stat-label">Focus Buddy trial users reported benefit</span></div>
+      <div class="stat"><span class="stat-num">2&times;</span><span class="stat-label">NCAA National Champion, rugby</span></div>
+    </div>
+  </section>
+
+  <section class="experience wrap" id="work">
+    <div class="section-head" data-reveal>
+      <span class="mono">03 / Experience</span>
+      <h2>Where the work happened</h2>
+    </div>
+    <ol class="timeline">
+      <li class="timeline-item" data-reveal>
+        <div class="ti-index mono">01</div>
+        <div class="ti-body">
+          <div class="ti-head">
+            <h3>Luminance</h3>
+            <span class="ti-role">Sales Engineer</span>
+            <span class="ti-date mono">Aug 2025 &ndash; Present</span>
+          </div>
+          <ul>
+            <li>Drove $4M+ in new business in H1 2026, achieving 167% attainment and earning Q1 2026 MVP / Highest Closer for enterprise legal AI agent sales.</li>
+            <li>Partner with Account Executives on consultative discovery, technical qualification, champion building, and demos across 10+ stakeholders per deal, from end users to C&#8209;suite.</li>
+            <li>Work with GTM to structure targeted pilots, run org&#8209;wide enablement sessions, and manage client relationships through post&#8209;sales.</li>
+            <li>Lead a monthly internal hackathon, teaching the team to build agents and ship internal tools with Codex.</li>
+            <li>Selected by the Commercial Director to run bi&#8209;weekly demo training for new Account Executives; influenced the product roadmap for 6 features from client feedback.</li>
+          </ul>
+          <div class="ti-tags"><span class="tag">Enterprise Legal AI</span><span class="tag">Discovery</span><span class="tag">Enablement</span></div>
+        </div>
+      </li>
+      <li class="timeline-item" data-reveal>
+        <div class="ti-index mono">02</div>
+        <div class="ti-body">
+          <div class="ti-head">
+            <h3>PT Sinar Nikel Nusantara</h3>
+            <span class="ti-role">Business Operations Intern</span>
+            <span class="ti-date mono">Jun &ndash; Sep 2024</span>
+          </div>
+          <ul>
+            <li>Facilitated $2M in new business contracts through cross&#8209;functional engagement with miners, buyers, and regulators in Jakarta, Indonesia.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="timeline-item" data-reveal>
+        <div class="ti-index mono">03</div>
+        <div class="ti-body">
+          <div class="ti-head">
+            <h3>DICK&rsquo;S Sporting Goods</h3>
+            <span class="ti-role">Student Strategy Consultant</span>
+            <span class="ti-date mono">Jan &ndash; Mar 2023</span>
+          </div>
+          <ul>
+            <li>Won 1st place nationally designing a GTM strategy targeting 100K+ new female consumers, using customer segmentation and detailed buyer personas to surface pain points.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="timeline-item" data-reveal>
+        <div class="ti-index mono">04</div>
+        <div class="ti-body">
+          <div class="ti-head">
+            <h3>Halodoc</h3>
+            <span class="ti-role">Product Development Intern</span>
+            <span class="ti-date mono">Jun &ndash; Sep 2022</span>
+          </div>
+          <ul>
+            <li>Lifted patient return rate by 15% by embedding in psychologist consultation workflows, identifying drop&#8209;off points, and shipping a personalized re&#8209;engagement strategy.</li>
+            <li>Presented weekly product insights to cross&#8209;functional stakeholders, translating usage into roadmap inputs.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="projects wrap" id="projects">
+    <div class="section-head" data-reveal>
+      <span class="mono">04 / Projects</span>
+      <h2>Things I&rsquo;ve built</h2>
+    </div>
+    <div class="project-grid">
+      <article class="project-card" data-reveal>
+        <div class="project-num mono">01</div>
+        <h3>VisaEase</h3>
+        <span class="project-date mono">Jan &ndash; Jun 2025</span>
+        <p>Defined vision and roadmap for a React Native app automating visa applications, cutting manual paperwork by an estimated 60% through automated form&#8209;filling and secure document storage. Built core front&#8209;end and back&#8209;end features integrating third&#8209;party APIs.</p>
+        <div class="project-tags">React Native &middot; Firebase &middot; REST APIs</div>
+      </article>
+      <article class="project-card" data-reveal>
+        <div class="project-num mono">02</div>
+        <h3>Focus Buddy</h3>
+        <span class="project-date mono">Sep &ndash; Nov 2023</span>
+        <p>A portable assistive device optimizing study environments for people with ADHD or executive dysfunction, built for a Human&#8209;Computer Interaction course. Integrates noise cancellation, aroma diffusion, a task board, timers, and music &mdash; developed through UX research, CAD and Arduino prototyping, and iterative user testing. 88% of 34 trial participants reported measurable benefit.</p>
+        <div class="project-tags">Arduino &middot; CAD &middot; Python &middot; UX Research</div>
+      </article>
+      <article class="project-card project-card--wip" data-reveal>
+        <div class="project-stamp">In the works</div>
+        <div class="project-num mono">03</div>
+        <h3>SetPiece</h3>
+        <span class="project-date mono">Coming soon</span>
+        <p>Currently building &mdash; details to follow.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="service wrap" id="service" data-reveal>
+    <div class="section-head">
+      <span class="mono">05 / Service</span>
+      <h2>Unshackle Indonesia</h2>
+    </div>
+    <p class="service-quote">Co&#8209;founded a nonprofit in 2018 raising awareness of mental health patients&rsquo; rights in Indonesia, specifically those subjected to <i>pasung</i> &mdash; the practice of physically restraining people with mental illness. Directed four events raising $40,000+ to fund medication transport to rural areas of Flores.</p>
+    <div class="service-meta">
+      <span>2018 &ndash; 2025</span>
+      <span>4 events</span>
+      <span>$40,000+ raised</span>
+    </div>
+  </section>
+
+  <section class="education wrap" id="education" data-reveal>
+    <div class="section-head">
+      <span class="mono">06 / Education</span>
+    </div>
+    <h2>Dartmouth College</h2>
+    <p class="edu-sub">B.A. Computer Science, modified with Film &amp; Neuroscience &mdash; GPA 3.85/4.0 &mdash; Class of 2025</p>
+    <div class="badges">
+      <span class="badge">Cum Laude</span>
+      <span class="badge">NCAA DI Women&rsquo;s Rugby</span>
+      <span class="badge badge--stamp">2&times; National Champion &rsquo;21 &rsquo;22</span>
+      <span class="badge">NIRA All&#8209;Academic</span>
+    </div>
+    <div class="skills-list">Technical Discovery &middot; Enterprise SaaS &middot; Python &middot; JavaScript &middot; React Native &middot; SQL &middot; REST APIs &middot; Firebase &middot; Figma &middot; Agile &middot; UX Research</div>
+  </section>
+
+  <footer class="contact wrap" id="contact" data-reveal>
+    <span class="mono">07 / Contact</span>
+    <h2>Let&rsquo;s talk.</h2>
+    <a class="contact-email" href="mailto:widodokyla@gmail.com">widodokyla@gmail.com</a>
+    <div class="contact-links">
+      <a href="https://linkedin.com/in/kyla-widodo-6B18B31BA/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+      <a href="https://github.com/kylawidodo" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+    <div class="foot-meta">
+      <span>New York, NY</span>
+      <span>&copy; 2026 Kyla Widodo</span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  // live NY clock
+  var clockEl = document.getElementById('clock');
+  function tick(){
+    try{
+      var fmt = new Intl.DateTimeFormat('en-US',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/New_York'});
+      clockEl.textContent = fmt.format(new Date()) + ' NYC';
+    }catch(e){}
+  }
+  tick(); setInterval(tick, 30000);
+
+  // scroll progress
+  var fill = document.getElementById('progressFill');
+  function onScroll(){
+    var h = document.documentElement;
+    var scrolled = h.scrollTop;
+    var max = h.scrollHeight - h.clientHeight;
+    fill.style.height = (max > 0 ? (scrolled/max)*100 : 0) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // reveal on scroll
+  var reveals = document.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry, i){
+        if(entry.isIntersecting){
+          entry.target.style.transitionDelay = (i % 4) * 0.06 + 's';
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.15});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  // custom cursor (fine pointers only)
+  if(window.matchMedia && window.matchMedia('(pointer: fine)').matches){
+    var dot = document.getElementById('cursorDot');
+    document.addEventListener('mousemove', function(e){
+      dot.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px) translate(-50%,-50%)';
+      dot.classList.add('is-on');
+    });
+    document.querySelectorAll('a, .stat, .project-card').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ dot.classList.add('is-active'); });
+      el.addEventListener('mouseleave', function(){ dot.classList.remove('is-active'); });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
